@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CARTIFY - Product Detail</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f8f9fa;
+        }
+
+        .container { max-width: 1200px; margin: auto; padding: 20px; }
+
+        header {
+            background: #fff;
+            padding: 1rem 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav a {
+            margin-right: 20px;
+            color: #555;
+            text-decoration: none;
+        }
+
+        .cart-icon {
+            position: relative;
+            font-size: 1.6rem;
+            cursor: pointer;
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -8px; right: -10px;
+            background: red;
+            color: white;
+            border-radius: 50%;
+            width: 20px; height: 20px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 0.75rem;
+        }
+        footer {
+    background: #485c62;   /* white background */
+    padding: 40px 0;
+    color: #333;
+    border-top: 1px solid #e5e5e5;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 30px;
+}
+
+.footer-section {
+    flex: 1;
+    min-width: 220px;
+}
+
+.footer-section h3 {
+    font-size: 18px;
+    margin-bottom: 15px;
+    color: #000; /* bold headings */
+    font-weight: 600;
+}
+
+.footer-section p {
+    color: #0b0b0b;
+    line-height: 1.6;
+}
+
+.footer-section ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-section ul li {
+    margin-bottom: 8px;
+}
+
+.footer-section ul li a {
+    color: #333;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.footer-section ul li a:hover {
+    color: #0073e6;   /* blue on hover */
+}
+
+.social-links a {
+    display: inline-block;
+    margin-right: 12px;
+    font-size: 20px;
+    color: #333;
+    transition: 0.3s;
+}
+
+.social-links a:hover {
+    color: #0073e6;   /* blue hover */
+}
+
+
+.footer-bottom {
+    text-align: center;
+    margin-top: 25px;
+    padding-top: 15px;
+    border-top: 1px solid #e5e5e5;
+}
+
+.footer-bottom p {
+    color: #555;
+    font-size: 14px;
+}
+
+
+
+        /* PRODUCT DETAIL */
+        .product-detail-container {
+            background: #fff;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+
+        .product-detail {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+
+        .main-image {
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+            border-radius: 12px;
+            background: #eee;
+        }
+
+        h1 { font-size: 2rem; margin-bottom: 10px; }
+
+        .product-rating-detail {
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            margin-bottom: 15px;
+        }
+
+        .rating-stars { color: #f39c12; }
+
+        .review-count { color: #777; }
+
+        .product-price-detail {
+            font-size: 2.2rem;
+            font-weight: bold;
+            color: #27ae60;
+            margin-bottom: 20px;
+        }
+
+        .product-description-detail {
+            margin-bottom: 25px;
+            color: #555;
+            line-height: 1.6;
+        }
+
+        .product-specs {
+            background: #f8f9fa;
+            padding: 15px 20px;
+            border-radius: 10px;
+            margin-bottom: 25px;
+        }
+
+        .product-specs ul { list-style: none; }
+        .product-specs li {
+            padding: 8px 0;
+            display: flex;
+            justify-content: space-between;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .product-actions {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .btn {
+            padding: 14px;
+            font-size: 1rem;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            border-radius: 8px;
+        }
+
+        .btn-primary {
+            background: #3498db;
+            color: white;
+        }
+
+        .btn-success {
+            background: #27ae60;
+            color: white;
+        }
+
+        .additional-info {
+            background: #fff3cd;
+            padding: 12px;
+            border-left: 4px solid #ffc107;
+            margin-top: 15px;
+        }
+
+        /* Related Products */
+        .related-products {
+            margin-top: 50px;
+        }
+
+        .related-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            gap: 25px;
+        }
+
+        .related-card {
+            background: white;
+            padding-bottom: 10px;
+            border-radius: 12px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            cursor: pointer;
+            overflow: hidden;
+            transition: 0.3s;
+        }
+
+        .related-card:hover { transform: translateY(-5px); }
+
+        .related-card img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+        }
+
+        .related-info {
+            padding: 12px;
+        }
+
+        .related-name { font-weight: bold; margin-bottom: 5px; }
+
+        .related-price { color: #27ae60; font-weight: bold; }
+
+        /* Notification */
+        .notification {
+            position: fixed;
+            top: 20px; right: 20px;
+            background: #27ae60;
+            color: white;
+            padding: 12px 18px;
+            border-radius: 8px;
+            display: none;
+            z-index: 3000;
+        }
+
+        @media(max-width: 900px){
+            .product-detail { grid-template-columns: 1fr; }
+            .main-image { height: 350px; }
+        }
+    </style>
+</head>
+
+<body>
+    
+
+    <!-- Notification -->
+    <div class="notification" id="notification">Added to Cart</div>
+
+    <!-- Header -->
+    <header>
+        <div class="container header-content">
+            <div class="logo"><h1>CARTIFY</h1></div>
+            <nav>
+                <a href="index.html">HOME</a>
+                <a href="products.html">PRODUCTS</a>
+            </nav>
+
+            <div class="cart-icon">
+                <span id="cartCount" class="cart-count">0</span>
+                🛒
+            </div>
+        </div>
+    </header>
+
+    <!-- Breadcrumb -->
+    <div class="container" style="margin-top: 15px; color:#666;">
+        <a href="index.html">Home</a> / 
+        <a href="products.html">Products</a> / 
+        <span id="breadcrumbProduct">Product</span>
+    </div>
+
+    <!-- Product Detail Box -->
+    <div class="container">
+        <div class="product-detail-container">
+            <div class="product-detail" id="productDetail">
+                <!-- JS inserts product here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Related Products -->
+    <div class="container related-products">
+        <h2 style="text-align:center; margin-bottom:30px;">You May Also Like</h2>
+        <div class="related-grid" id="relatedProducts"></div>
+    </div>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Cartify</h3>
+                    <p>Your one-stop shop for quality products across all categories exclusively for mens. We deliver excellence in every order.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="products.html">Products</a></li>
+                        
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Customer Service</h3>
+                    <ul>
+                        <li><a href="#">Shipping Info</a></li>
+                        <li><a href="#">Returns</a></li>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Terms & Conditions</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Follow Us</h3>
+                    <div class="social-links">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                        <a href="#" aria-label="Pinterest"><i class="fab fa-pinterest-p"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Cartify. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+     
+
+    <!-- Link JS -->
+    <script src="product-detail.js"></script>
+
+</body>
+</html>
