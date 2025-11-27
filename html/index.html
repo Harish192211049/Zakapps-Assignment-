@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CARTIFY</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="nav-wrapper">
+                <div class="logo">
+                    <h2>CARTIFY</h2>
+                </div>
+                <nav class="nav">
+                    <a href="index.html">HOME</a>
+                    <a href="products.html">PRODUCTS</a>
+                    
+                </nav>
+                
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>WELCOME TO CARTIFY</h1>
+                <p>Discover amazing products at unbeatable prices at your Doorstep!!</p>
+                
+            </div>
+        </div>
+    </section>
+
+    <section class="categories">
+    <div class="container">
+        <h2>Shop by Category</h2>
+        <div class="category-grid">
+
+<!-- Ethnic Wear -->
+<div class="category-card" onclick="navigateToProducts('ethnic')">
+   <img src="file:///C:/Users/haris/Downloads/Crack-20240124T040155Z-001/desktop/Desktop/32/1.jpg"
+         class="category-img">
+    <h3>Ethnic Wear</h3>
+    <p>Traditional & vibrant styles</p>
+</div>
+
+<!-- T-Shirts -->
+<div class="category-card" onclick="navigateToProducts('tshirts')">
+    <img src="file:///C:/Users/haris/Downloads/Crack-20240124T040155Z-001/desktop/Desktop/32/2.jpg"
+         class="category-img">
+    <h3>T-Shirts</h3>
+    <p>Casual & comfortable</p>
+</div>
+
+           
+
+<!-- Casuals -->
+<div class="category-card" onclick="navigateToProducts('casuals')">
+    <img src="file:///C:/Users/haris/Downloads/Crack-20240124T040155Z-001/desktop/Desktop/32/4.jpg"
+         class="category-img">
+    <h3>Casuals</h3>
+    <p>Relaxed everyday outfits</p>
+</div>
+       
+
+
+<!-- Accessories -->
+            <div class="category-card" onclick="navigateToProducts('accessories')">
+    <img src="file:///C:/Users/haris/Downloads/Crack-20240124T040155Z-001/desktop/Desktop/32/6.jpg" 
+         class="category-img">
+    <h3>Accessories</h3>
+    <p>Complete your look</p>
+</div>
+        </div>
+    </div>
+</section>
+
+   
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Cartify</h3>
+                    <p>Your one-stop shop for quality products across all categories exclusively for mens. We deliver excellence in every order.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="products.html">Products</a></li>
+                        
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Customer Service</h3>
+                    <ul>
+                        <li><a href="#">Shipping Info</a></li>
+                        <li><a href="#">Returns</a></li>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Terms & Conditions</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Follow Us</h3>
+                    <div class="social-links">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                        <a href="#" aria-label="Pinterest"><i class="fab fa-pinterest-p"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Cartify. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+
+    <script src="script.js"></script>
+    <script>
+        // Load featured products on home page
+        document.addEventListener('DOMContentLoaded', function() {
+            const featuredContainer = document.getElementById('featuredProducts');
+            const featured = products.slice(0, 4);
+            
+            featuredContainer.innerHTML = featured.map(product => `
+                <div class="product-card" onclick="viewProduct(${product.id})">
+                    <div class="product-badge">${product.badge || 'NEW'}</div>
+                    <img src="${product.image}" alt="${product.name}">
+                    <div class="product-info">
+                        <h3>${product.name}</h3>
+                        <p class="product-description">${product.description}</p>
+                        <div class="product-rating">
+                            ${'⭐'.repeat(Math.floor(product.rating))} ${product.rating}
+                        </div>
+                        <p class="product-price">$${product.price}</p>
+                    </div>
+                </div>
+            `).join('');
+            
+            updateCartCount();
+        });
+
+        function navigateToProducts(category) {
+            window.location.href = `products.html?category=${category}`;
+        }
+
+        function viewProduct(id) {
+            window.location.href = `product-detail.html?id=${id}`;
+        }
+    </script>
+</body>
+</html>
