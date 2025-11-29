@@ -108,7 +108,7 @@ body {
 /* Hero Section */
 .hero {
      background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
-               url("file:///C:/Users/haris/Downloads/Crack-20240124T040155Z-001/desktop/Desktop/32/image.jpg")
+               url("image.jpg")
                 center/cover no-repeat;
     min-height: 500px;
     display: flex;
